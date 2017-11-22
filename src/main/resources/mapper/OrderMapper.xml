@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goal.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.goal.po.Order">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="order_price" jdbcType="VARCHAR" property="orderPrice" />
+    <result column="delivery_way" jdbcType="VARCHAR" property="deliveryWay" />
+    <result column="is_coupon_used" jdbcType="VARCHAR" property="isCouponUsed" />
+    <result column="invoice_type" jdbcType="VARCHAR" property="invoiceType" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="cmd_count" jdbcType="VARCHAR" property="cmdCount" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="change_tsp" jdbcType="TIMESTAMP" property="changeTsp" />
+    <result column="create_tsp" jdbcType="TIMESTAMP" property="createTsp" />
+  </resultMap>
+  <insert id="insert" parameterType="com.goal.po.Order">
+    insert into t_order (id, order_number, user_id, 
+      order_price, delivery_way, is_coupon_used, 
+      invoice_type, order_status, cmd_count, 
+      comment, change_tsp, create_tsp
+      )
+    values (#{id,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{orderPrice,jdbcType=VARCHAR}, #{deliveryWay,jdbcType=VARCHAR}, #{isCouponUsed,jdbcType=VARCHAR}, 
+      #{invoiceType,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, #{cmdCount,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR}, #{changeTsp,jdbcType=TIMESTAMP}, #{createTsp,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.goal.po.Order">
+    insert into t_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderPrice != null">
+        order_price,
+      </if>
+      <if test="deliveryWay != null">
+        delivery_way,
+      </if>
+      <if test="isCouponUsed != null">
+        is_coupon_used,
+      </if>
+      <if test="invoiceType != null">
+        invoice_type,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="cmdCount != null">
+        cmd_count,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="changeTsp != null">
+        change_tsp,
+      </if>
+      <if test="createTsp != null">
+        create_tsp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null">
+        #{orderPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryWay != null">
+        #{deliveryWay,jdbcType=VARCHAR},
+      </if>
+      <if test="isCouponUsed != null">
+        #{isCouponUsed,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdCount != null">
+        #{cmdCount,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTsp != null">
+        #{changeTsp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTsp != null">
+        #{createTsp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

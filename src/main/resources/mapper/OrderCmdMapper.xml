@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goal.dao.OrderCmdMapper">
+  <resultMap id="BaseResultMap" type="com.goal.po.OrderCmd">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="cmd_id" jdbcType="VARCHAR" property="cmdId" />
+    <result column="cmd_spec_id" jdbcType="VARCHAR" property="cmdSpecId" />
+    <result column="cmd_price" jdbcType="VARCHAR" property="cmdPrice" />
+    <result column="cmd_count" jdbcType="VARCHAR" property="cmdCount" />
+    <result column="change_tsp" jdbcType="TIMESTAMP" property="changeTsp" />
+    <result column="create_tsp" jdbcType="TIMESTAMP" property="createTsp" />
+  </resultMap>
+  <insert id="insert" parameterType="com.goal.po.OrderCmd">
+    insert into t_order_cmd (id, order_id, cmd_id, 
+      cmd_spec_id, cmd_price, cmd_count, 
+      change_tsp, create_tsp)
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{cmdId,jdbcType=VARCHAR}, 
+      #{cmdSpecId,jdbcType=VARCHAR}, #{cmdPrice,jdbcType=VARCHAR}, #{cmdCount,jdbcType=VARCHAR}, 
+      #{changeTsp,jdbcType=TIMESTAMP}, #{createTsp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.goal.po.OrderCmd">
+    insert into t_order_cmd
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="cmdId != null">
+        cmd_id,
+      </if>
+      <if test="cmdSpecId != null">
+        cmd_spec_id,
+      </if>
+      <if test="cmdPrice != null">
+        cmd_price,
+      </if>
+      <if test="cmdCount != null">
+        cmd_count,
+      </if>
+      <if test="changeTsp != null">
+        change_tsp,
+      </if>
+      <if test="createTsp != null">
+        create_tsp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdId != null">
+        #{cmdId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdSpecId != null">
+        #{cmdSpecId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdPrice != null">
+        #{cmdPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdCount != null">
+        #{cmdCount,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTsp != null">
+        #{changeTsp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTsp != null">
+        #{createTsp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goal.dao.CmdSkuMapper">
+  <resultMap id="BaseResultMap" type="com.goal.po.CmdSku">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="cmd_id" jdbcType="VARCHAR" property="cmdId" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="key_word" jdbcType="VARCHAR" property="keyWord" />
+    <result column="change_tsp" jdbcType="TIMESTAMP" property="changeTsp" />
+    <result column="create_tsp" jdbcType="TIMESTAMP" property="createTsp" />
+  </resultMap>
+  <insert id="insert" parameterType="com.goal.po.CmdSku">
+    insert into t_cmd_sku (id, cmd_id, price, 
+      key_word, change_tsp, create_tsp
+      )
+    values (#{id,jdbcType=VARCHAR}, #{cmdId,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{keyWord,jdbcType=VARCHAR}, #{changeTsp,jdbcType=TIMESTAMP}, #{createTsp,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.goal.po.CmdSku">
+    insert into t_cmd_sku
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cmdId != null">
+        cmd_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="keyWord != null">
+        key_word,
+      </if>
+      <if test="changeTsp != null">
+        change_tsp,
+      </if>
+      <if test="createTsp != null">
+        create_tsp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdId != null">
+        #{cmdId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="keyWord != null">
+        #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTsp != null">
+        #{changeTsp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTsp != null">
+        #{createTsp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

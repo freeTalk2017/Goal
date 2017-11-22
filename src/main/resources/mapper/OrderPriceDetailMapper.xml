@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goal.dao.OrderPriceDetailMapper">
+  <resultMap id="BaseResultMap" type="com.goal.po.OrderPriceDetail">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="detail_key" jdbcType="VARCHAR" property="detailKey" />
+    <result column="detail_name" jdbcType="VARCHAR" property="detailName" />
+    <result column="detail_value" jdbcType="VARCHAR" property="detailValue" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="change_tsp" jdbcType="TIMESTAMP" property="changeTsp" />
+    <result column="create_tsp" jdbcType="TIMESTAMP" property="createTsp" />
+  </resultMap>
+  <insert id="insert" parameterType="com.goal.po.OrderPriceDetail">
+    insert into t_order_price_detail (id, order_id, detail_key, 
+      detail_name, detail_value, amount, 
+      change_tsp, create_tsp)
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{detailKey,jdbcType=VARCHAR}, 
+      #{detailName,jdbcType=VARCHAR}, #{detailValue,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, 
+      #{changeTsp,jdbcType=TIMESTAMP}, #{createTsp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.goal.po.OrderPriceDetail">
+    insert into t_order_price_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="detailKey != null">
+        detail_key,
+      </if>
+      <if test="detailName != null">
+        detail_name,
+      </if>
+      <if test="detailValue != null">
+        detail_value,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="changeTsp != null">
+        change_tsp,
+      </if>
+      <if test="createTsp != null">
+        create_tsp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="detailKey != null">
+        #{detailKey,jdbcType=VARCHAR},
+      </if>
+      <if test="detailName != null">
+        #{detailName,jdbcType=VARCHAR},
+      </if>
+      <if test="detailValue != null">
+        #{detailValue,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTsp != null">
+        #{changeTsp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTsp != null">
+        #{createTsp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

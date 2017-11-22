@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goal.dao.WxPaySendMapper">
+  <resultMap id="BaseResultMap" type="com.goal.po.WxPaySend">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="mch_id" jdbcType="VARCHAR" property="mchId" />
+    <result column="device_info" jdbcType="VARCHAR" property="deviceInfo" />
+    <result column="nonce_str" jdbcType="VARCHAR" property="nonceStr" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="sign_type" jdbcType="VARCHAR" property="signType" />
+    <result column="body" jdbcType="VARCHAR" property="body" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="attach" jdbcType="VARCHAR" property="attach" />
+    <result column="out_trade_no" jdbcType="VARCHAR" property="outTradeNo" />
+    <result column="fee_type" jdbcType="VARCHAR" property="feeType" />
+    <result column="total_fee" jdbcType="INTEGER" property="totalFee" />
+    <result column="spbill_create_ip" jdbcType="VARCHAR" property="spbillCreateIp" />
+    <result column="time_start" jdbcType="VARCHAR" property="timeStart" />
+    <result column="time_expire" jdbcType="VARCHAR" property="timeExpire" />
+    <result column="goods_tag" jdbcType="VARCHAR" property="goodsTag" />
+    <result column="notify_url" jdbcType="VARCHAR" property="notifyUrl" />
+    <result column="trade_type" jdbcType="VARCHAR" property="tradeType" />
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="limit_pay" jdbcType="VARCHAR" property="limitPay" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="change_tsp" jdbcType="TIMESTAMP" property="changeTsp" />
+    <result column="create_tsp" jdbcType="TIMESTAMP" property="createTsp" />
+  </resultMap>
+  <insert id="insert" parameterType="com.goal.po.WxPaySend">
+    insert into t_wx_pay_send (id, order_id, appid, 
+      mch_id, device_info, nonce_str, 
+      sign, sign_type, body, 
+      detail, attach, out_trade_no, 
+      fee_type, total_fee, spbill_create_ip, 
+      time_start, time_expire, goods_tag, 
+      notify_url, trade_type, product_id, 
+      limit_pay, openid, change_tsp, 
+      create_tsp)
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{mchId,jdbcType=VARCHAR}, #{deviceInfo,jdbcType=VARCHAR}, #{nonceStr,jdbcType=VARCHAR}, 
+      #{sign,jdbcType=VARCHAR}, #{signType,jdbcType=VARCHAR}, #{body,jdbcType=VARCHAR}, 
+      #{detail,jdbcType=VARCHAR}, #{attach,jdbcType=VARCHAR}, #{outTradeNo,jdbcType=VARCHAR}, 
+      #{feeType,jdbcType=VARCHAR}, #{totalFee,jdbcType=INTEGER}, #{spbillCreateIp,jdbcType=VARCHAR}, 
+      #{timeStart,jdbcType=VARCHAR}, #{timeExpire,jdbcType=VARCHAR}, #{goodsTag,jdbcType=VARCHAR}, 
+      #{notifyUrl,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{limitPay,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{changeTsp,jdbcType=TIMESTAMP}, 
+      #{createTsp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.goal.po.WxPaySend">
+    insert into t_wx_pay_send
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="mchId != null">
+        mch_id,
+      </if>
+      <if test="deviceInfo != null">
+        device_info,
+      </if>
+      <if test="nonceStr != null">
+        nonce_str,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="signType != null">
+        sign_type,
+      </if>
+      <if test="body != null">
+        body,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="attach != null">
+        attach,
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no,
+      </if>
+      <if test="feeType != null">
+        fee_type,
+      </if>
+      <if test="totalFee != null">
+        total_fee,
+      </if>
+      <if test="spbillCreateIp != null">
+        spbill_create_ip,
+      </if>
+      <if test="timeStart != null">
+        time_start,
+      </if>
+      <if test="timeExpire != null">
+        time_expire,
+      </if>
+      <if test="goodsTag != null">
+        goods_tag,
+      </if>
+      <if test="notifyUrl != null">
+        notify_url,
+      </if>
+      <if test="tradeType != null">
+        trade_type,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="limitPay != null">
+        limit_pay,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="changeTsp != null">
+        change_tsp,
+      </if>
+      <if test="createTsp != null">
+        create_tsp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null">
+        #{mchId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceInfo != null">
+        #{deviceInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="nonceStr != null">
+        #{nonceStr,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="body != null">
+        #{body,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="attach != null">
+        #{attach,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null">
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="feeType != null">
+        #{feeType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=INTEGER},
+      </if>
+      <if test="spbillCreateIp != null">
+        #{spbillCreateIp,jdbcType=VARCHAR},
+      </if>
+      <if test="timeStart != null">
+        #{timeStart,jdbcType=VARCHAR},
+      </if>
+      <if test="timeExpire != null">
+        #{timeExpire,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTag != null">
+        #{goodsTag,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null">
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="limitPay != null">
+        #{limitPay,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTsp != null">
+        #{changeTsp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTsp != null">
+        #{createTsp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
