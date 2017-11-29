@@ -44,7 +44,7 @@ public class PaymentController extends AbstractController{
 		
 		CodeDTO dto = new CodeDTO();
 		dto.setCode(code);
-		dto.setState(state);;
+		dto.setState(state);
 		
 		OAuth oAuth = null;
 		

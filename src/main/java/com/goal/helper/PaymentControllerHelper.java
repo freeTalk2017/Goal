@@ -30,7 +30,7 @@ public class PaymentControllerHelper extends GenericControllerHelper{
 	
 	private static final String RAW_URL = "https://api.weixin.qq.com/sns/oauth2/access_token";
 	private static final String APPID = "wxa1378048216955b0";
-	private static final String SECRET = "6ac0b7bfb762290e38034fd159d8d4a6";
+	private static final String SECRET = "6ac0b7bfb762290e38034fd159d8d777";
 	private static final String GRANT_TYPE = "authorization_code";
 
 	
