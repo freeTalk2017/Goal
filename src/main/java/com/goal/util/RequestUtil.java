@@ -25,6 +25,7 @@ public class RequestUtil {
 	public static Logger logger = LoggerFactory.getLogger(RequestUtil.class);
 	
 	public void doGetUrl(String url,boolean isCode) throws Exception{
+		logger.debug("do get url");
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpGet httpGet = new HttpGet(url);
 		CloseableHttpResponse response;
@@ -33,9 +34,10 @@ public class RequestUtil {
 			httpGet.setHeader("User-Agent","Mozilla/5.0 (Linux; U; Android 2.3.6; zh-cn; GT-S5660 Build/GINGERBREAD) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 MicroMessenger/4.5.255");
 			httpGet.setHeader("Referer", "https://mp.weixin.qq.com");
 			response = client.execute(httpGet);
+			logger.debug("do get response :{}",response);
 			HttpEntity entity = response.getEntity();
 			result = EntityUtils.toString(entity);
-			logger.debug(result);
+			logger.debug("do get result :{}",result);
 		} catch (IOException e) {
 			logger.error("get request error");
 			throw new Exception("execute GET request error！{}", e);

@@ -28,6 +28,7 @@ public class WechatController extends AbstractController{
 	
 	@RequestMapping("/code")
 	public void getCode(){
+		logger.debug("do get request code");
 		final Boolean isCode = true;
 		RequestUtil requestUtil = new RequestUtil();
 		String url = WXRequestUtil.getSilentUrl();
