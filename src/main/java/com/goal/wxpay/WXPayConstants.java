@@ -48,5 +48,9 @@ public class WXPayConstants {
     public static final String SANDBOX_SHORTURL_URL_SUFFIX     = "/sandboxnew/tools/shorturl";
     public static final String SANDBOX_AUTHCODETOOPENID_URL_SUFFIX = "/sandboxnew/tools/authcodetoopenid";
 
+    
+    public static final String APPID = "wxa1378048216955b0";
+    public static final String SECRET = "6ac0b7bfb762290e38034fd159d8d777";
+    public static final String GRANT_TYPE = "authorization_code";
 }
 

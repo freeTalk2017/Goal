@@ -30,7 +30,7 @@ public class PaymentController extends AbstractController{
 	private static final Log logger = LogFactory.getLog(PaymentController.class);
 	
 	@Resource
-	PaymentControllerHelper helper;
+	PaymentControllerHelper paymentHelper;
 	
 	/**
 	 * 处理支付预支付流程
@@ -49,7 +49,7 @@ public class PaymentController extends AbstractController{
 		OAuth oAuth = null;
 		
 		try {
-			oAuth = helper.generateOpenid(dto);
+			oAuth = paymentHelper.generateOpenid(dto);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("get oauth failed!");
@@ -62,13 +62,13 @@ public class PaymentController extends AbstractController{
 		
 		try {
 			logger.debug("prepare for unified order");
-			result = helper.doUnifiedOrder(oAuth);
+			result = paymentHelper.doUnifiedOrder(oAuth);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		logger.debug("prepare for process prepay");
-		prepayForm = helper.processPrepay(result);
+		prepayForm = paymentHelper.processPrepay(result);
 		if(prepayForm ==null){
 			logger.debug("process prepay failed");
 			return null;

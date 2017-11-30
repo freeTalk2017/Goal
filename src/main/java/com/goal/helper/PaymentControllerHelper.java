@@ -19,6 +19,7 @@ import com.goal.form.PrepayForm;
 import com.goal.po.OAuth;
 import com.goal.wxpay.WXPay;
 import com.goal.wxpay.WXPayConfigImpl;
+import com.goal.wxpay.WXPayConstants.SignType;
 import com.goal.wxpay.WXPayPerformance;
 
 import net.sf.json.JSONObject;
@@ -124,7 +125,7 @@ public class PaymentControllerHelper extends GenericControllerHelper{
 		prepayForm.setNonceStr(unified.get("nonce_str"));
 		prepayForm.setPackage_pre("prepay_id" + unified.get("prepay_id"));
 		prepayForm.setPaySign(unified.get("sign"));
-		prepayForm.setSignType("MD5");
+		prepayForm.setSignType(SignType.HMACSHA256);
 		prepayForm.setTimeStamp(timeStr);
 		
 		logger.debug(prepayForm.toString());
