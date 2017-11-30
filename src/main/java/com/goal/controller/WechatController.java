@@ -1,5 +1,6 @@
 package com.goal.controller;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.goal.form.PrepayForm;
 import com.goal.helper.WechatControllerHelper;
@@ -73,6 +75,11 @@ public class WechatController extends AbstractController{
 			return null;
 		}
 		
+		try {
+			response.sendRedirect("/trade/HTMLPage3.html?package="+prepayForm.getPackage_pre());
+		} catch (IOException e) {
+			logger.error("redirect : {}",e);
+		}
 		return prepayForm;
 	}
 	
