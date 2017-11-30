@@ -12,7 +12,7 @@ public class WXRequestUtil {
 		try {
 			url = "https://open.weixin.qq.com/connect/oauth2/authorize?"
 					+ "appid=wxa1378048216955b0"
-					+ "&redirect_uri=" + URLEncoder.encode("http://www.makeiteasy.xin/trade/check","utf-8")
+					+ "&redirect_uri=" + URLEncoder.encode("http://www.makeiteasy.xin/apis/Goal/trade/check","utf-8")
 					+ "&response_type=code"
 					+ "&scope=snsapi_base#wechat_redirect";
 		} catch (UnsupportedEncodingException e) {

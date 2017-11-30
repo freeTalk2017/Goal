@@ -27,7 +27,7 @@ public class WechatController extends AbstractController{
 	WechatControllerHelper wechatControllerHelper;
 	
 	@RequestMapping("/code")
-	public void getCode(){
+	public @ResponseBody Object getCode(){
 		logger.debug("do get request code");
 		final Boolean isCode = true;
 		RequestUtil requestUtil = new RequestUtil();
@@ -41,6 +41,7 @@ public class WechatController extends AbstractController{
 		}else{
 			logger.debug("url is null !");
 		}
+		return null;
 	}
 	
 	@RequestMapping("/check")
