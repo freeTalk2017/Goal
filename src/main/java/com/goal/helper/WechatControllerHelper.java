@@ -77,9 +77,9 @@ public class WechatControllerHelper {
 		data.put("timeStamp", timeStr);
 				
 		try {
-//			paySign = WXPayUtil.generateSignature(data, WXPayConstants.SECRET, SignType.HMACSHA256);
-			String str = "appId="+WXPayConstants.APPID+"&nonceStr="+unified.get("nonce_str")+"&package=prepay_id="+unified.get("prepay_id")+"&timeStamp="+timeStr;
-			paySign = WXPayUtil.HMACSHA256(str, WXPayConstants.SECRET);
+			paySign = WXPayUtil.generateSignature(data, WXPayConstants.SECRET, SignType.HMACSHA256);
+//			String str = "appId="+WXPayConstants.APPID+"&nonceStr="+unified.get("nonce_str")+"&package=prepay_id="+unified.get("prepay_id")+"&timeStamp="+timeStr;
+//			paySign = WXPayUtil.HMACSHA256(str, WXPayConstants.SECRET);
 		} catch (Exception e) {
 			logger.error("generate prepay form sign failed :{}",e);
 		}
