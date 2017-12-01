@@ -3,6 +3,7 @@ package com.goal.controllerhelper;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
@@ -19,6 +20,9 @@ import com.goal.form.PrepayForm;
 import com.goal.helper.WechatControllerHelper;
 import com.goal.util.RequestUtil;
 import com.goal.util.WXRequestUtil;
+import com.goal.wxpay.WXPayConstants;
+import com.goal.wxpay.WXPayUtil;
+import com.goal.wxpay.WXPayConstants.SignType;
 
 public class WechatControllerHelperTest {
 
@@ -76,5 +80,17 @@ public class WechatControllerHelperTest {
 	public void testEncode() throws UnsupportedEncodingException{
 		String url = URLEncoder.encode("http://www.makeiteasy.xin/trade/HTMLPage3.html", "utf-8");
 		System.out.println(url);
+	}
+	
+	@Test
+	public void testPaySign() throws Exception{
+		Map<String, String> data = new HashMap<String, String>();
+		data.put("appId", "wx2421b1c4370ec43b");
+		data.put("nonceStr", "e61463f8efa94090b1f366cccfbbb444");
+		data.put("package", "prepay_id=u802345jgfjsdfgsdg888");
+		data.put("timeStamp", "1395712654");
+		data.put("signType", SignType.MD5.toString());
+		String paySign = WXPayUtil.generateSignature(data, WXPayConstants.SECRET, SignType.MD5);
+		System.out.println(paySign);
 	}
 }
