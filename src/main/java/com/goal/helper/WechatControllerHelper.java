@@ -22,7 +22,7 @@ public class WechatControllerHelper {
 	
 	public String getOpenIdBySlientAuthy(String code){
 		
-		String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxa1378048216955b0&secret=6ac0b7bfb762290e38034fd159d8d4a6&code=" + code + "&grant_type=authorization_code";
+		String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxa1378048216955b0&secret=6ac0b7bfb762290e38034fd159d8d777&code=" + code + "&grant_type=authorization_code";
 		
 		RequestUtil requestUtil = new RequestUtil();
 		JSONObject jsonObject = null;
