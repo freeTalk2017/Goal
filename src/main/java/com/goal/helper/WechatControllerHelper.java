@@ -74,7 +74,7 @@ public class WechatControllerHelper {
 		data.put("appId", WXPayConstants.APPID);
 		data.put("nonceStr", unified.get("nonce_str"));
 		data.put("package", "prepay_id=" + unified.get("prepay_id"));
-		data.put("timeStamp", timeStr);
+		data.put("timestamp", timeStr);
 				
 		try {
 //			paySign = WXPayUtil.generateSignature(data, WXPayConstants.SECRET, SignType.MD5);
