@@ -25,7 +25,7 @@ public class WXPayPerformance {
 		config = WXPayConfigImpl.getInstance();
         wxpay = new WXPay(config);
         total_fee = "1";
-        out_trade_no = "201711127496748980290321";
+        out_trade_no = "201711127496748980290322";
 	}
     
 	public Map<String, String> doUnifiedOrder(OAuth oAuth){
