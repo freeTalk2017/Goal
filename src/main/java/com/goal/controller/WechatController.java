@@ -54,6 +54,13 @@ public class WechatController extends AbstractController{
 		PrepayForm prepayForm = null;
 		
 		String openid = wechatControllerHelper.getOpenIdBySlientAuthy(code);
+		if("".equals(openid)){
+			try {
+				response.sendRedirect("/trade/HTMLPage2.html");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		logger.debug("openid = {}",openid);
 		
 		if("".equals(openid)){
