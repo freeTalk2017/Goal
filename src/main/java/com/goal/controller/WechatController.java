@@ -76,7 +76,14 @@ public class WechatController extends AbstractController{
 		}
 		
 		try {
-			response.sendRedirect("/trade/HTMLPage3.html?package="+prepayForm.getPackage_pre());
+			StringBuilder url = new StringBuilder("/trade/HTMLPage3.html?")
+					.append("appId=").append(prepayForm.getAppId())
+					.append("&timeStamp=").append(prepayForm.getTimeStamp())
+					.append("&nonceStr=").append(prepayForm.getNonceStr())
+					.append("&package_pre=").append(prepayForm.getPackage_pre())
+					.append("&signType=").append(prepayForm.getSignType())
+					.append("&paySign=").append(prepayForm.getPaySign());
+			response.sendRedirect(url.toString());
 		} catch (IOException e) {
 			logger.error("redirect : {}",e);
 		}
