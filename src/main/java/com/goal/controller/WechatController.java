@@ -47,7 +47,7 @@ public class WechatController extends AbstractController{
 	}
 	
 	@RequestMapping("/check")
-	public @ResponseBody ModelAndView callbackBase(@RequestParam(value = "code", required = false) String code, HttpServletResponse response){
+	public @ResponseBody Object callbackBase(@RequestParam(value = "code", required = false) String code, HttpServletResponse response){
 		logger.debug("do callback base");
 		
 		Map<String, String> result = null;
@@ -75,14 +75,15 @@ public class WechatController extends AbstractController{
 			return null;
 		}
 		
-//		try {
-//			response.sendRedirect("/trade/HTMLPage3.html?package="+prepayForm.getPackage_pre());
-//		} catch (IOException e) {
-//			logger.error("redirect : {}",e);
-//		}
-		ModelAndView modelAndView = new ModelAndView("wxpay");
-		modelAndView.addObject("appId",prepayForm.getAppId());
-		return modelAndView;
+		try {
+			response.sendRedirect("/trade/HTMLPage3.html?package="+prepayForm.getPackage_pre());
+		} catch (IOException e) {
+			logger.error("redirect : {}",e);
+		}
+//		ModelAndView modelAndView = new ModelAndView("wxpay");
+//		modelAndView.addObject("appId",prepayForm.getAppId());
+//		return modelAndView;
+		return prepayForm;
 	}
 	
 }
