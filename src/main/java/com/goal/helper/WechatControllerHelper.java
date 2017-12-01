@@ -75,6 +75,7 @@ public class WechatControllerHelper {
 		data.put("nonceStr", unified.get("nonce_str"));
 		data.put("package", "prepay_id=" + unified.get("prepay_id"));
 		data.put("timestamp", timeStr);
+		data.put("signType", SignType.HMACSHA256.toString());
 				
 		try {
 //			paySign = WXPayUtil.generateSignature(data, WXPayConstants.SECRET, SignType.MD5);
