@@ -20,6 +20,7 @@ public class WechatControllerHelper {
 
 	public static Logger logger = LoggerFactory.getLogger(WechatControllerHelper.class);
 	
+	//获取openid
 	public String getOpenIdBySlientAuthy(String code){
 		
 		//String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxa1378048216955b0&secret=6ac0b7bfb762290e38034fd159d8d777&code=" + code + "&grant_type=authorization_code";
@@ -43,6 +44,7 @@ public class WechatControllerHelper {
 		return jsonObject.getString("openid");
 	}
 	
+	//统一下单
 	public Map<String, String> doUnifiedOrder(String openid){
 		logger.debug("do unified order");
 		
@@ -66,6 +68,7 @@ public class WechatControllerHelper {
 		return unified;
 	}
 	
+	//封装prepayform
 	public PrepayForm generatePrepayForm(Map<String, String> unified){
 		logger.debug("do generate prepay form");
 		Map<String, String> data = new HashMap<String, String>();
