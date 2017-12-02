@@ -50,7 +50,8 @@ public class WXPayConstants {
 
     
     public static final String APPID = "wxa1378048216955b0";
-    public static final String SECRET = "6ac0b7bfb762290e38034fd159d8d777";
+    public static final String SECRET = "6ac0b7bfb762290e38034fd159d88888";
     public static final String GRANT_TYPE = "authorization_code";
+    public static final String MCHID = "1490576662";
 }
 

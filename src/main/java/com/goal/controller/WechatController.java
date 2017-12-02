@@ -47,11 +47,17 @@ public class WechatController extends AbstractController{
 	}
 	
 	@RequestMapping("/check")
-	public @ResponseBody Object callbackBase(@RequestParam(value = "code", required = false) String code, HttpServletResponse response){
+	public @ResponseBody Object callbackBase(@RequestParam(value = "code", required = false) String code, HttpServletResponse response) throws IOException{
 		logger.debug("do callback base");
 		
 		Map<String, String> result = null;
 		PrepayForm prepayForm = null;
+		
+		if (code == null || "".equals(code)) {
+			logger.error("request code failed");
+			response.sendRedirect("/trade/HTMLPage3.html");
+			
+		}
 		
 		String openid = wechatControllerHelper.getOpenIdBySlientAuthy(code);
 		if("".equals(openid)){
@@ -64,21 +70,21 @@ public class WechatController extends AbstractController{
 		logger.debug("openid = {}",openid);
 		
 		if("".equals(openid)){
-			logger.debug("openid is null");
+			logger.error("openid is null");
 			return null;
 		}
 		
 		result = wechatControllerHelper.doUnifiedOrder(openid);
 		
 		if("".equals(result)){
-			logger.debug("unified order is null");
+			logger.error("unified order is null");
 			return null;
 		}
 		
 		prepayForm =wechatControllerHelper.generatePrepayForm(result);
 		
 		if("".equals(prepayForm)){
-			logger.debug("prepay form is null");
+			logger.error("prepay form is null");
 			return null;
 		}
 		

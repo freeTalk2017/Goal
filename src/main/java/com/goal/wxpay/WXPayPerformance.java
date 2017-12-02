@@ -25,7 +25,7 @@ public class WXPayPerformance {
 		config = WXPayConfigImpl.getInstance();
         wxpay = new WXPay(config);
         total_fee = "1";
-        out_trade_no = "201711127496748980290322";
+        out_trade_no = "201712037496748980290322";
 	}
     
 	public Map<String, String> doUnifiedOrder(OAuth oAuth){
@@ -67,7 +67,7 @@ public Map<String, String> doUnifiedOrder(String openid){
         data.put("spbill_create_ip", "59.110.240.8");
         data.put("notify_url", "http://www.makeiteasy.xin/wxpay/notify");
         data.put("trade_type", "JSAPI");
-        data.put("product_id", "12");
+        data.put("product_id", "24");
         data.put("openid", openid);
         
         try {
@@ -78,7 +78,7 @@ public Map<String, String> doUnifiedOrder(String openid){
             	return null;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("do unified order failed ,msg: {}",e);
         }
 		return result;
 	}

@@ -22,12 +22,20 @@ public class WechatControllerHelper {
 	
 	public String getOpenIdBySlientAuthy(String code){
 		
-		String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxa1378048216955b0&secret=6ac0b7bfb762290e38034fd159d8d777&code=" + code + "&grant_type=authorization_code";
-		
+		//String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxa1378048216955b0&secret=6ac0b7bfb762290e38034fd159d8d777&code=" + code + "&grant_type=authorization_code";
+		if("".equals(code)||code == null){
+			return null;
+		}
+		StringBuilder url = new StringBuilder();
+		url.append("https://api.weixin.qq.com/sns/oauth2/access_token?")
+			.append("appid=").append(WXPayConstants.APPID)
+			.append("&secret=").append("6ac0b7bfb762290e38034fd159d8d4a6"/*WXPayConstants.SECRET*/)
+			.append("&code=").append(code)
+			.append("&grant_type=authorization_code");
 		RequestUtil requestUtil = new RequestUtil();
 		JSONObject jsonObject = null;
 		try {
-			jsonObject = requestUtil.doGetUrl(url);
+			jsonObject = requestUtil.doGetUrl(url.toString());
 		} catch (Exception e) {
 			logger.error("request openid errer");
 		}
