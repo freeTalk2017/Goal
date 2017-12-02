@@ -60,7 +60,7 @@ public class WechatController extends AbstractController{
 		}
 		
 		String openid = wechatControllerHelper.getOpenIdBySlientAuthy(code);
-		if("".equals(openid)){
+		if("".equals(openid)||openid == null){
 			try {
 				response.sendRedirect("/trade/HTMLPage2.html");
 			} catch (IOException e) {
