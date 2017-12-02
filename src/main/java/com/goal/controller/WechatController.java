@@ -56,7 +56,7 @@ public class WechatController extends AbstractController{
 		if (code == null || "".equals(code)) {
 			logger.error("request code failed");
 			response.sendRedirect("/trade/HTMLPage3.html");
-			
+			return null;
 		}
 		
 		String openid = wechatControllerHelper.getOpenIdBySlientAuthy(code);
@@ -71,6 +71,7 @@ public class WechatController extends AbstractController{
 		
 		if("".equals(openid)){
 			logger.error("openid is null");
+			response.sendRedirect("/trade/HTMLPage3.html");
 			return null;
 		}
 		

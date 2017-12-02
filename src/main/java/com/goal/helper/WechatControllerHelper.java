@@ -29,7 +29,7 @@ public class WechatControllerHelper {
 		StringBuilder url = new StringBuilder();
 		url.append("https://api.weixin.qq.com/sns/oauth2/access_token?")
 			.append("appid=").append(WXPayConstants.APPID)
-			.append("&secret=").append("6ac0b7bfb762290e38034fd159d8d4a6"/*WXPayConstants.SECRET*/)
+			.append("&secret=").append("6ac0b7bfb762290e38034fd159d8d4a6")
 			.append("&code=").append(code)
 			.append("&grant_type=authorization_code");
 		RequestUtil requestUtil = new RequestUtil();

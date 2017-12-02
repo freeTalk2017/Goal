@@ -6,7 +6,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.goal.helper.WechatControllerHelper;
 import com.goal.po.OAuth;
 import com.goal.wxpay.WXPay;
 import com.goal.wxpay.WXPayConfigImpl;
@@ -25,7 +24,8 @@ public class WXPayPerformance {
 		config = WXPayConfigImpl.getInstance();
         wxpay = new WXPay(config);
         total_fee = "1";
-        out_trade_no = "201712037496748980290322";
+        int random = new java.util.Random().nextInt(900)+100;
+        out_trade_no = "2017120374967489802903"+Integer.toString(random);
 	}
     
 	public Map<String, String> doUnifiedOrder(OAuth oAuth){

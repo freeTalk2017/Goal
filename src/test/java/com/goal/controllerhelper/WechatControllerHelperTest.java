@@ -30,7 +30,7 @@ public class WechatControllerHelperTest {
 	
 	@Test
 	public void testGetOpenIdBySlientAuthy(){
-		String code = "061d5WrP1vW2C31eyrrP1lAGrP1d5Wrm";
+		String code = "001L4AeC1XtLI20lDZfC1C4yeC1L4Ae0";
 		
 		System.out.println(wechatControllerHelper.getOpenIdBySlientAuthy(code));
 	}
