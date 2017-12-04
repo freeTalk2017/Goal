@@ -55,8 +55,8 @@ public class WechatControllerHelper {
 			 wxPay = new WXPayPerformance();
 		} catch (Exception e) {
 			logger.debug("initialize WXPayPerformance failed :{}",e);
+			logger.error("initialize WXPayPerformance failed :{}",e);
 		}
-		
 		unified = wxPay.doUnifiedOrder(openid);
 		
 		if( unified != null){

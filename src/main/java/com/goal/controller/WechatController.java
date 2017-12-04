@@ -67,7 +67,7 @@ public class WechatController extends AbstractController{
 				e.printStackTrace();
 			}
 		}
-		logger.debug("openid = {}",openid);
+		logger.info("openid = {}",openid);
 		
 		if("".equals(openid)){
 			logger.error("openid is null");
