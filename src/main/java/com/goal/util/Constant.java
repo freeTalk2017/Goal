@@ -40,4 +40,9 @@ public interface Constant {
 	public static final String SERIAL_LEVEL_SECOND = "2";
 	/*系列第三级*/
 	public static final String SERIAL_LEVEL_THIRD = "3";
+	
+	/**
+	 * 符号
+	 */
+	public static final String SYMBOL_STRIP="-";
 }
