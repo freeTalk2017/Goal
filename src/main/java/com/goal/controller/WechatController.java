@@ -10,9 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.goal.form.PrepayForm;
 import com.goal.helper.WechatControllerHelper;
@@ -46,7 +46,7 @@ public class WechatController extends AbstractController{
 		return null;
 	}
 	
-	@RequestMapping("/check")
+	@RequestMapping(value = "/check" , method = RequestMethod.GET)
 	public @ResponseBody Object callbackBase(@RequestParam(value = "code", required = false) String code, HttpServletResponse response) throws IOException{
 		logger.debug("do callback base");
 		
@@ -60,8 +60,9 @@ public class WechatController extends AbstractController{
 		}
 		
 		String openid = wechatControllerHelper.getOpenIdBySlientAuthy(code);
-		if("".equals(openid)||openid == null){
+		if(openid == null||"".equals(openid)){
 			try {
+				logger.error("openid is null");
 				response.sendRedirect("/trade/HTMLPage2.html");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -69,22 +70,18 @@ public class WechatController extends AbstractController{
 		}
 		logger.info("openid = {}",openid);
 		
-		if("".equals(openid)){
-			logger.error("openid is null");
-			response.sendRedirect("/trade/HTMLPage3.html");
-			return null;
-		}
-		
 		result = wechatControllerHelper.doUnifiedOrder(openid);
 		
-		if("".equals(result)){
+		if(result == null||"".equals(result)){
+			response.sendRedirect("/trade/HTMLPage2.html");
 			logger.error("unified order is null");
 			return null;
 		}
 		
 		prepayForm =wechatControllerHelper.generatePrepayForm(result);
 		
-		if("".equals(prepayForm)){
+		if(prepayForm == null || "".equals(prepayForm)){
+			response.sendRedirect("/trade/HTMLPage2.html");
 			logger.error("prepay form is null");
 			return null;
 		}

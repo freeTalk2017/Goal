@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSONObject;
 import com.goal.form.PrepayForm;
+import com.goal.util.DateUtil;
 import com.goal.util.RequestUtil;
 import com.goal.wxpay.WXPayConstants;
 import com.goal.wxpay.WXPayConstants.SignType;
@@ -54,14 +55,13 @@ public class WechatControllerHelper {
 		try {
 			 wxPay = new WXPayPerformance();
 		} catch (Exception e) {
-			logger.debug("initialize WXPayPerformance failed :{}",e);
 			logger.error("initialize WXPayPerformance failed :{}",e);
 		}
 		unified = wxPay.doUnifiedOrder(openid);
 		
-		if( unified != null){
-			logger.debug("unified order process successful");
-			return unified;
+		if( unified == null || "".equals(unified)){
+			logger.error("unified order process successful");
+			return null;
 		}
 		
 		logger.debug("unified order process failed");
@@ -73,10 +73,8 @@ public class WechatControllerHelper {
 		logger.debug("do generate prepay form");
 		Map<String, String> data = new HashMap<String, String>();
 		PrepayForm prepayForm = new PrepayForm();
+		String timeStr = DateUtil.getSystemDate();
 		String paySign = null;
-		long timeLong = System.currentTimeMillis();
-		timeLong /= 1000.0;
-		String timeStr = Long.toString(timeLong);
 		
 		if("FAIL".equals(unified.get("return_code"))){
 			return null;
@@ -89,19 +87,16 @@ public class WechatControllerHelper {
 		data.put("signType", SignType.HMACSHA256.toString());
 				
 		try {
-//			paySign = WXPayUtil.generateSignature(data, WXPayConstants.SECRET, SignType.MD5);
 			paySign = WXPayUtil.generateSignature(data, WXPayConstants.SECRET, SignType.HMACSHA256);
-//			String str = "appId="+WXPayConstants.APPID+"&nonceStr="+unified.get("nonce_str")+"&package=prepay_id="+unified.get("prepay_id")+"&timeStamp="+timeStr;
-//			paySign = WXPayUtil.HMACSHA256(str, WXPayConstants.SECRET);
 		} catch (Exception e) {
 			logger.error("generate prepay form sign failed :{}",e);
+			return null;
 		}
 		
 		prepayForm.setAppId(WXPayConstants.APPID);
 		prepayForm.setNonceStr(unified.get("nonce_str"));
 		prepayForm.setPackage_pre("prepay_id=" + unified.get("prepay_id"));
 		prepayForm.setPaySign(paySign);
-//		prepayForm.setSignType(SignType.MD5);
 		prepayForm.setSignType(SignType.HMACSHA256);
 		prepayForm.setTimeStamp(timeStr);
 		
