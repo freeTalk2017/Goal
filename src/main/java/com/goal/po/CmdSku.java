@@ -5,8 +5,6 @@ import java.util.Date;
 public class CmdSku {
     private String id;
 
-    private String cmdId;
-
     private Integer price;
 
     private String keyWord;
@@ -21,14 +19,6 @@ public class CmdSku {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
-    }
-
-    public String getCmdId() {
-        return cmdId;
-    }
-
-    public void setCmdId(String cmdId) {
-        this.cmdId = cmdId == null ? null : cmdId.trim();
     }
 
     public Integer getPrice() {

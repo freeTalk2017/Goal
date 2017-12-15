@@ -9,9 +9,9 @@ public class OrderCmd {
 
     private String cmdId;
 
-    private String cmdSpecId;
+    private String cmdSkuId;
 
-    private String cmdPrice;
+    private String skuPrice;
 
     private String cmdCount;
 
@@ -43,20 +43,20 @@ public class OrderCmd {
         this.cmdId = cmdId == null ? null : cmdId.trim();
     }
 
-    public String getCmdSpecId() {
-        return cmdSpecId;
+    public String getCmdSkuId() {
+        return cmdSkuId;
     }
 
-    public void setCmdSpecId(String cmdSpecId) {
-        this.cmdSpecId = cmdSpecId == null ? null : cmdSpecId.trim();
+    public void setCmdSkuId(String cmdSkuId) {
+        this.cmdSkuId = cmdSkuId == null ? null : cmdSkuId.trim();
     }
 
-    public String getCmdPrice() {
-        return cmdPrice;
+    public String getSkuPrice() {
+        return skuPrice;
     }
 
-    public void setCmdPrice(String cmdPrice) {
-        this.cmdPrice = cmdPrice == null ? null : cmdPrice.trim();
+    public void setSkuPrice(String skuPrice) {
+        this.skuPrice = skuPrice == null ? null : skuPrice.trim();
     }
 
     public String getCmdCount() {

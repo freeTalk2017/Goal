@@ -21,7 +21,7 @@ public class OrderCmdDTO {
 	/**
 	 * 商品下单时单价
 	 */
-	private String cmdPrice;
+	private String skuPrice;
 	
 	/**
 	 * 商品数量
@@ -45,12 +45,12 @@ public class OrderCmdDTO {
 		this.cmdId = cmdId;
 	}
 
-	public String getCmdPrice() {
-		return cmdPrice;
+	public String getSkuPrice() {
+		return skuPrice;
 	}
 
-	public void setCmdPrice(String cmdPrice) {
-		this.cmdPrice = cmdPrice;
+	public void setSkuPrice(String skuPrice) {
+		this.skuPrice = skuPrice;
 	}
 
 	public String getCmdCount() {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.goal.dao.OrderPriceDetailMapper">
+<mapper namespace="com.goal.dao.OrderPriceDetailDAO">
   <resultMap id="BaseResultMap" type="com.goal.po.OrderPriceDetail">
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
@@ -13,11 +13,9 @@
   </resultMap>
   <insert id="insert" parameterType="com.goal.po.OrderPriceDetail">
     insert into t_order_price_detail (id, order_id, detail_key, 
-      detail_name, detail_value, amount, 
-      change_tsp, create_tsp)
-    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{detailKey,jdbcType=VARCHAR}, 
-      #{detailName,jdbcType=VARCHAR}, #{detailValue,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, 
-      #{changeTsp,jdbcType=TIMESTAMP}, #{createTsp,jdbcType=TIMESTAMP})
+      detail_name, detail_value, amount)
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{detailKey,jdbcType=VARCHAR}, #{detailName,jdbcType=VARCHAR},#{detailValue,jdbcType=VARCHAR},
+       #{amount,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.goal.po.OrderPriceDetail">
     insert into t_order_price_detail
@@ -40,12 +38,6 @@
       <if test="amount != null">
         amount,
       </if>
-      <if test="changeTsp != null">
-        change_tsp,
-      </if>
-      <if test="createTsp != null">
-        create_tsp,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -65,12 +57,6 @@
       </if>
       <if test="amount != null">
         #{amount,jdbcType=VARCHAR},
-      </if>
-      <if test="changeTsp != null">
-        #{changeTsp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTsp != null">
-        #{createTsp,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>

@@ -41,6 +41,19 @@ public interface Constant {
 	/*系列第三级*/
 	public static final String SERIAL_LEVEL_THIRD = "3";
 	
+	/**订单状态**/
+	/*订单超时未付款*/
+	public static final String ORDER_STATUS_UNPAY = "0";
+	/*订单初始化*/
+	public static final String ORDER_STATUS_INIT = "1";
+	/*订单已付款*/
+	public static final String ORDER_STATUS_PAYED = "2";
+	/*订单已发货*/
+	public static final String ORDER_STATUS_SENT = "3";
+	/*订单已完成*/
+	public static final String ORDER_STATUS_COMPLETED = "4";
+	
+	
 	/**
 	 * 符号
 	 */
