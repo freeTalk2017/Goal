@@ -47,53 +47,61 @@ public class WechatController extends AbstractController{
 	}
 	
 	@RequestMapping(value = "/check" , method = RequestMethod.GET)
-	public @ResponseBody Object callbackBase(@RequestParam(value = "code", required = false) String code, HttpServletResponse response) throws IOException{
+	public @ResponseBody Object callbackBase(
+			@RequestParam(value = "code", required = false) String code,
+			@RequestParam(value = "state", required = false, defaultValue = "") String state,
+			HttpServletResponse response) throws IOException{
 		logger.debug("do callback base");
 		
 		Map<String, String> result = null;
 		PrepayForm prepayForm = null;
+		String price = null;
 		
 		if (code == null || "".equals(code)) {
 			logger.error("request code failed");
-			response.sendRedirect("/trade/HTMLPage3.html");
+			response.sendRedirect("/trade/failed.html");
 			return null;
 		}
 		
 		String openid = wechatControllerHelper.getOpenIdBySlientAuthy(code);
 		if(openid == null||"".equals(openid)){
-			try {
-				logger.error("openid is null");
-				response.sendRedirect("/trade/HTMLPage2.html");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			logger.error("openid is null");
+			response.sendRedirect("/trade/failed.html");
 		}
 		logger.info("openid = {}",openid);
 		
 		result = wechatControllerHelper.doUnifiedOrder(openid);
 		
 		if(result == null||"".equals(result)){
-			response.sendRedirect("/trade/HTMLPage2.html");
 			logger.error("unified order is null");
+			response.sendRedirect("/trade/failed.html");
 			return null;
 		}
 		
 		prepayForm =wechatControllerHelper.generatePrepayForm(result);
 		
 		if(prepayForm == null || "".equals(prepayForm)){
-			response.sendRedirect("/trade/HTMLPage2.html");
-			logger.error("prepay form is null");
+			logger.error("prepay form is null");			
+			response.sendRedirect("/trade/failed.html");
+			return null;
+		}
+		
+		price = result.get("price");
+		if (price ==null || "".equals(price)){
+			logger.error("get price failed");
+			response.sendRedirect("/trade/failed.html");
 			return null;
 		}
 		
 		try {
-			StringBuilder url = new StringBuilder("/trade/HTMLPage3.html?")
+			StringBuilder url = new StringBuilder("/trade/choose.html?")
 					.append("appId=").append(prepayForm.getAppId())
 					.append("&timeStamp=").append(prepayForm.getTimeStamp())
 					.append("&nonceStr=").append(prepayForm.getNonceStr())
 					.append("&package_pre=").append(prepayForm.getPackage_pre())
 					.append("&signType=").append(prepayForm.getSignType())
-					.append("&paySign=").append(prepayForm.getPaySign());
+					.append("&paySign=").append(prepayForm.getPaySign())
+					.append("&price=").append(price);
 			response.sendRedirect(url.toString());
 		} catch (IOException e) {
 			logger.error("redirect : {}",e);

@@ -3,6 +3,8 @@ package com.goal.helper;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,6 +23,8 @@ public class WechatControllerHelper {
 
 	public static Logger logger = LoggerFactory.getLogger(WechatControllerHelper.class);
 	
+	//@Resource 
+	
 	//获取openid
 	public String getOpenIdBySlientAuthy(String code){
 		
@@ -31,7 +35,7 @@ public class WechatControllerHelper {
 		StringBuilder url = new StringBuilder();
 		url.append("https://api.weixin.qq.com/sns/oauth2/access_token?")
 			.append("appid=").append(WXPayConstants.APPID)
-			.append("&secret=").append("6ac0b7bfb762290e38034fd159d8d4a6")
+			.append("&secret=").append(WXPayConstants.APP_SECRET)
 			.append("&code=").append(code)
 			.append("&grant_type=authorization_code");
 		RequestUtil requestUtil = new RequestUtil();

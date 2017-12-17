@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.goal.po.OAuth;
+import com.goal.util.AmountUtils;
 import com.goal.wxpay.WXPay;
 import com.goal.wxpay.WXPayConfigImpl;
 
@@ -54,7 +55,7 @@ public class WXPayPerformance {
 		return result;
 	}
 	
-public Map<String, String> doUnifiedOrder(String openid){
+	public Map<String, String> doUnifiedOrder(String openid){
 		
 		Map<String, String> result = null;
 		
@@ -72,7 +73,6 @@ public Map<String, String> doUnifiedOrder(String openid){
         
         try {
             result = wxpay.unifiedOrder(data);
-            System.out.println(result);
             if(!result.containsKey("prepay_id")){
             	logger.error("get prepay id failed , the errer msg : {}",result.get("return_msg"));
             	return null;
@@ -80,6 +80,19 @@ public Map<String, String> doUnifiedOrder(String openid){
         } catch (Exception e) {
             logger.error("do unified order failed ,msg: {}",e);
         }
+        
+        try {
+			result = putPrice2Result(result, data.get("total_fee"));
+		} catch (Exception e) {
+			logger.error("price format conversion failed :{}",e);
+		}
+        
+		return result;
+	}
+
+	//将总价加入到result中，为了返回给页面显示金额
+	public Map<String, String> putPrice2Result(Map<String, String> result, String price) throws Exception{
+		result.put("price", AmountUtils.changeF2Y(price));
 		return result;
 	}
     
