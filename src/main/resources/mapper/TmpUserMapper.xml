@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goal.dao.TmpUserMapper">
+  <resultMap id="BaseResultMap" type="com.goal.po.TmpUser">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="change_tsp" jdbcType="TIMESTAMP" property="changeTsp" />
+    <result column="create_tsp" jdbcType="TIMESTAMP" property="createTsp" />
+  </resultMap>
+  <insert id="insert" parameterType="com.goal.po.TmpUser">
+    insert into t_tmp_user (id, user_name, change_tsp, 
+      create_tsp)
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{changeTsp,jdbcType=TIMESTAMP}, 
+      #{createTsp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.goal.po.TmpUser">
+    insert into t_tmp_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="changeTsp != null">
+        change_tsp,
+      </if>
+      <if test="createTsp != null">
+        create_tsp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTsp != null">
+        #{changeTsp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTsp != null">
+        #{createTsp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>
