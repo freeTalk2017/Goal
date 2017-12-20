@@ -22,6 +22,7 @@ import com.goal.dto.OrderAddressDTO;
 import com.goal.dto.OrderCmdDTO;
 import com.goal.dto.OrderDTO;
 import com.goal.dto.OrderPriceDetailDTO;
+import com.goal.dto.ResponseOrderDTO;
 import com.goal.po.Order;
 import com.goal.po.OrderAddress;
 import com.goal.po.OrderCmd;
@@ -54,7 +55,8 @@ public class OrderServiceImpl implements OrderService{
 	/**
 	 * 提交订单
 	 */
-	public OrderDTO submitOrder(OrderDTO dto) throws Exception{
+	public ResponseOrderDTO submitOrder(OrderDTO dto) throws Exception{
+		LOG.info("start submit order service...");
 		//插入订单表t_order,并设置返回的orderid和订单总价
 		insertOrder(dto);
 		
@@ -67,9 +69,23 @@ public class OrderServiceImpl implements OrderService{
 		//插入订单地址表
 		insertOrderAddress(dto);
 		
-		return dto;
+		
+		return handleSuccessResultDTO(dto);
 	}
 
+	/**
+	 * 包装返回的dto
+	 * @param existedDto
+	 * @return
+	 */
+	private ResponseOrderDTO handleSuccessResultDTO(OrderDTO existedDto) {
+		ResponseOrderDTO newDTO = new ResponseOrderDTO();
+		newDTO.setValidateOrder(true);
+		newDTO.setOrderId(existedDto.getOrderId());
+		newDTO.setTotalPrice(existedDto.getTotalPrice());
+		LOG.info("return orderDTO:"+newDTO);
+		return newDTO;
+	}
 	/**
 	 * 生成订单编号-临时方法
 	 * @return
@@ -84,11 +100,11 @@ public class OrderServiceImpl implements OrderService{
 	 * @return
 	 */
 	private String mockGenerateOrderPrice(OrderDTO orderDto) {
-		List<OrderPriceDetailDTO> priceDetailList = new ArrayList<>();
 		BigDecimal result = new BigDecimal(0);
-		for (OrderPriceDetailDTO orderPriceDetailDTO : priceDetailList) {
-			int price = Integer.getInteger(orderPriceDetailDTO.getDetailValue());
-			int amount = Integer.getInteger(orderPriceDetailDTO.getAmount());
+		for (OrderCmdDTO ocDTO : orderDto.getOrderCmdList()) {
+			LOG.info("OrderCmdDTO->>>>>"+ocDTO.getSkuPrice());
+			int price = new Integer(ocDTO.getSkuPrice());
+			int amount = new Integer(ocDTO.getCmdCount());
 			BigDecimal e1 = new BigDecimal(price);
 			BigDecimal e2 = new BigDecimal(amount);
 			e1.multiply(e2);
@@ -192,7 +208,7 @@ public class OrderServiceImpl implements OrderService{
 		OrderAddress oa = new OrderAddress();
 		OrderAddressDTO oaDTO = orderDTO.getOrderAddress();
 		if(oaDTO==null) {
-			return false;
+			throw new Exception("order address can not be none!");
 		}
 		//copy properties from oaDTO to oa
 		BeanUtils.copyProperties(oa, oaDTO);
@@ -207,19 +223,7 @@ public class OrderServiceImpl implements OrderService{
 	
 	
 	public static void main(String[] args) {
-		OrderAddress oa = new OrderAddress();
-		OrderAddressDTO oaDTO = new OrderAddressDTO();
-		oa.setId("1234");
-		oa.setCity("chengdu");
-		try {
-			BeanUtils.copyProperties(oaDTO,oa);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(oaDTO);
+		int a = new Integer("10000");
+		System.out.println(a);
 	}
 }

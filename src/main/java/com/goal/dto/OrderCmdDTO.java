@@ -1,8 +1,8 @@
 package com.goal.dto;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-public class OrderCmdDTO {
+public class OrderCmdDTO extends AbstractDTO{
+
 	/**
 	 * id
 	 */
@@ -67,11 +67,5 @@ public class OrderCmdDTO {
 
 	public void setCmdSkuId(String cmdSkuId) {
 		this.cmdSkuId = cmdSkuId;
-	}
-	
-
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this);
 	}
 }

@@ -1,6 +1,7 @@
 package com.goal.service;
 
 import com.goal.dto.OrderDTO;
+import com.goal.dto.ResponseOrderDTO;
 
 /**
  * 订单服务接口
@@ -13,5 +14,5 @@ public interface OrderService {
 	 * @param dto
 	 * @return 订单详情
 	 */
-	OrderDTO submitOrder(OrderDTO dto) throws Exception;
+	ResponseOrderDTO submitOrder(OrderDTO dto) throws Exception;
 }

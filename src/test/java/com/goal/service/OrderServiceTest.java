@@ -33,7 +33,6 @@ public class OrderServiceTest {
 		ocDTO.setCmdCount("1");
 		ocDTO.setCmdId("1234");
 		ocDTO.setCmdSkuId("123");
-		ocDTO.setCmdCount("2");
 		ocDTO.setSkuPrice("1100");
 		ocList.add(ocDTO);
 		orderDTO.setOrderCmdList(ocList);
