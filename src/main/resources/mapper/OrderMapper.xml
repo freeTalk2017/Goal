@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.goal.dao.OrderMapper">
+<mapper namespace="com.goal.dao.OrderDAO">
   <resultMap id="BaseResultMap" type="com.goal.po.Order">
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
@@ -19,13 +19,12 @@
     insert into t_order (id, order_number, user_id, 
       order_price, delivery_way, is_coupon_used, 
       invoice_type, order_status, cmd_count, 
-      comment, change_tsp, create_tsp
+      comment
       )
     values (#{id,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
       #{orderPrice,jdbcType=VARCHAR}, #{deliveryWay,jdbcType=VARCHAR}, #{isCouponUsed,jdbcType=VARCHAR}, 
       #{invoiceType,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, #{cmdCount,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{changeTsp,jdbcType=TIMESTAMP}, #{createTsp,jdbcType=TIMESTAMP}
-      )
+      #{comment,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.goal.po.Order">
     insert into t_order
@@ -60,12 +59,6 @@
       <if test="comment != null">
         comment,
       </if>
-      <if test="changeTsp != null">
-        change_tsp,
-      </if>
-      <if test="createTsp != null">
-        create_tsp,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -97,12 +90,6 @@
       </if>
       <if test="comment != null">
         #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="changeTsp != null">
-        #{changeTsp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTsp != null">
-        #{createTsp,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>

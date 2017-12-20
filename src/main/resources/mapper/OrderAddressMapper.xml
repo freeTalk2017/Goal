@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.goal.dao.OrderAddressMapper">
+<mapper namespace="com.goal.dao.OrderAddressDAO">
   <resultMap id="BaseResultMap" type="com.goal.po.OrderAddress">
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
@@ -16,12 +16,10 @@
   <insert id="insert" parameterType="com.goal.po.OrderAddress">
     insert into t_order_address (id, order_id, receiver, 
       telephone, province, city, 
-      street, zip_code, change_tsp, 
-      create_tsp)
+      street, zip_code)
     values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, 
       #{telephone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
-      #{street,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{changeTsp,jdbcType=TIMESTAMP}, 
-      #{createTsp,jdbcType=TIMESTAMP})
+      #{street,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.goal.po.OrderAddress">
     insert into t_order_address
@@ -50,12 +48,6 @@
       <if test="zipCode != null">
         zip_code,
       </if>
-      <if test="changeTsp != null">
-        change_tsp,
-      </if>
-      <if test="createTsp != null">
-        create_tsp,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -81,12 +73,6 @@
       </if>
       <if test="zipCode != null">
         #{zipCode,jdbcType=VARCHAR},
-      </if>
-      <if test="changeTsp != null">
-        #{changeTsp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTsp != null">
-        #{createTsp,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
