@@ -53,4 +53,15 @@ public class DateUtil extends DateUtils{
 	public static Date truncateByUnit(Date date,int unit){
 		return DateUtils.truncate(date, unit);
 	}
+	
+	/**
+	 * get system date for wxpay.
+	 * @return
+	 */
+	public static String getSystemDate(){
+		long timeLong = System.currentTimeMillis();
+		timeLong /= 1000.0;
+		return Long.toString(timeLong);
+		
+	}
 }
