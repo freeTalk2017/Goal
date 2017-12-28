@@ -275,11 +275,11 @@
       <url>https://repo.spring.io/libs-release</url> 
     </repository> 
   </repositories>  
-  <pluginrepositories> 
-    <pluginrepository> 
+  <pluginRepositories> 
+    <pluginRepository> 
       <id>spring-releases</id>  
       <name>Spring Releases</name>  
       <url>https://repo.spring.io/libs-release</url> 
-    </pluginrepository> 
-  </pluginrepositories> 
+    </pluginRepository> 
+  </pluginRepositories> 
 </project>
