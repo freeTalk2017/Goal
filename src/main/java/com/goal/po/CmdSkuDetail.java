@@ -2,16 +2,16 @@ package com.goal.po;
 
 import java.util.Date;
 
-public class SkuDetail {
+public class CmdSkuDetail {
     private String id;
-
-    private String tCmdSkuId;
 
     private String paramKey;
 
     private String paramValue;
 
     private String paramDesc;
+
+    private String pid;
 
     private Date changeTsp;
 
@@ -23,14 +23,6 @@ public class SkuDetail {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
-    }
-
-    public String gettCmdSkuId() {
-        return tCmdSkuId;
-    }
-
-    public void settCmdSkuId(String tCmdSkuId) {
-        this.tCmdSkuId = tCmdSkuId == null ? null : tCmdSkuId.trim();
     }
 
     public String getParamKey() {
@@ -55,6 +47,14 @@ public class SkuDetail {
 
     public void setParamDesc(String paramDesc) {
         this.paramDesc = paramDesc == null ? null : paramDesc.trim();
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid == null ? null : pid.trim();
     }
 
     public Date getChangeTsp() {

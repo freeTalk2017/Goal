@@ -107,7 +107,7 @@ public class OrderServiceImpl implements OrderService{
 			int amount = new Integer(ocDTO.getCmdCount());
 			BigDecimal e1 = new BigDecimal(price);
 			BigDecimal e2 = new BigDecimal(amount);
-			e1.multiply(e2);
+			result = result.add(e1.multiply(e2));
 		}
 		return Integer.toString(result.intValue());
 	}
@@ -225,5 +225,14 @@ public class OrderServiceImpl implements OrderService{
 	public static void main(String[] args) {
 		int a = new Integer("10000");
 		System.out.println(a);
+	}
+
+	@Override
+	public OrderDTO getOrderById(OrderDTO dto) throws Exception {
+		Order order = orderDao.selectOrderById(dto.getOrderId());
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setOrderId(order.getId());
+		orderDTO.setTotalPrice(order.getOrderPrice());
+		return orderDTO;
 	}
 }

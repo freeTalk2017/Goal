@@ -15,6 +15,11 @@
     <result column="change_tsp" jdbcType="TIMESTAMP" property="changeTsp" />
     <result column="create_tsp" jdbcType="TIMESTAMP" property="createTsp" />
   </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, order_number, user_id, order_price, delivery_way, is_coupon_used,invoice_type, order_status, cmd_count, comment, create_tsp,change_tsp
+  </sql>
+  
   <insert id="insert" parameterType="com.goal.po.Order">
     insert into t_order (id, order_number, user_id, 
       order_price, delivery_way, is_coupon_used, 
@@ -26,6 +31,16 @@
       #{invoiceType,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, #{cmdCount,jdbcType=VARCHAR}, 
       #{comment,jdbcType=VARCHAR})
   </insert>
+  <select id="selectOrderById" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order 
+    <where>
+        <if test="0!=null">
+            id=#{0}
+        </if>
+    </where>
+  </select>
   <insert id="insertSelective" parameterType="com.goal.po.Order">
     insert into t_order
     <trim prefix="(" suffix=")" suffixOverrides=",">

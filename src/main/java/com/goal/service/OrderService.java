@@ -15,4 +15,12 @@ public interface OrderService {
 	 * @return 订单详情
 	 */
 	ResponseOrderDTO submitOrder(OrderDTO dto) throws Exception;
+	
+	/**
+	 * 根据orderid取得order
+	 * @param dto
+	 * @return
+	 * @throws Exception
+	 */
+	OrderDTO getOrderById(OrderDTO dto) throws Exception;
 }
