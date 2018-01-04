@@ -21,7 +21,6 @@ public class OrderServiceTest {
 	
 	@Autowired
 	private OrderService orderService;
-	@Before
 	public void dataPrepare() {
 		System.out.println("preparing data..");
 		orderDTO = new OrderDTO();
@@ -50,10 +49,19 @@ public class OrderServiceTest {
 	@Test
 	public void testOrderSubmit() {
 		System.out.println("start to submit order..");
+		dataPrepare();
 		try {
 			orderService.submitOrder(orderDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testOrderSelectById() throws Exception {
+		OrderDTO dto = new OrderDTO();
+		dto.setOrderId("cc1e246c06024e45b09e79f8dd338fcc");
+		
+		System.out.println(orderService.getOrderById(dto));
 	}
 }

@@ -3,22 +3,57 @@
 <mapper namespace="com.goal.dao.CmdSkuDAO">
   <resultMap id="BaseResultMap" type="com.goal.po.CmdSku">
     <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="cmd_id" jdbcType="VARCHAR" property="cmdId" />
     <result column="price" jdbcType="INTEGER" property="price" />
     <result column="key_word" jdbcType="VARCHAR" property="keyWord" />
     <result column="change_tsp" jdbcType="TIMESTAMP" property="changeTsp" />
     <result column="create_tsp" jdbcType="TIMESTAMP" property="createTsp" />
   </resultMap>
+  
+  <resultMap id="queryResultMap" type="com.goal.dto.SkuQueryResultDTO">
+    <result column="sku_id" jdbcType="VARCHAR" property="skuId" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="sku_detail_id" jdbcType="VARCHAR" property="skuDetailId" />
+    <result column="index" jdbcType="INTEGER" property="index" />
+    <result column="param_key" jdbcType="VARCHAR" property="paramKey" />
+    <result column="param_value" jdbcType="VARCHAR" property="paramValue" />
+    <result column="pid" jdbcType="VARCHAR" property="pId" />
+  </resultMap>
+  <select id="selectSkuListByCmdId" resultMap="queryResultMap">
+        sku.id sku_id,
+	    sd.id sku_detail_id,
+	    sh.index,
+	    sd.param_key,
+	    sd.param_value,
+	    sd.pid
+	    FROM
+    shop.t_cmd_sku sku
+        JOIN
+    shop.t_cmd_sku_has_sku_detail sh ON sku.id = sh.sku_id
+        JOIN
+    shop.t_cmd_sku_detail sd ON sh.sku_detail_id = sd.id
+    <where>
+        <if test="0!=null">
+            sku.cmd_id = #{0}
+        </if>
+    </where>
+  </select>
   <insert id="insert" parameterType="com.goal.po.CmdSku">
-    insert into t_cmd_sku (id, price, key_word, 
-      change_tsp, create_tsp)
-    values (#{id,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{keyWord,jdbcType=VARCHAR}, 
-      #{changeTsp,jdbcType=TIMESTAMP}, #{createTsp,jdbcType=TIMESTAMP})
+    insert into t_cmd_sku (id, cmd_id, price, 
+      key_word, change_tsp, create_tsp
+      )
+    values (#{id,jdbcType=VARCHAR}, #{cmdId,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
+      #{keyWord,jdbcType=VARCHAR}, #{changeTsp,jdbcType=TIMESTAMP}, #{createTsp,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.goal.po.CmdSku">
     insert into t_cmd_sku
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="cmdId != null">
+        cmd_id,
       </if>
       <if test="price != null">
         price,
@@ -36,6 +71,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cmdId != null">
+        #{cmdId,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         #{price,jdbcType=INTEGER},

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.goal.dto.CmdPicDTO;
 import com.goal.form.CmdDetailForm;
-import com.goal.form.CmdParamForm;
 import com.goal.form.CmdParamsForm;
 import com.goal.form.CmdPicForm;
 import com.goal.service.CmdDetailService;
