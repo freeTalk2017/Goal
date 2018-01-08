@@ -31,8 +31,8 @@ public class CmdSkuController extends AbstractController{
 	
 	@RequestMapping(value="/skuDetail/{cmdId}",method=RequestMethod.GET)
 	public @ResponseBody List<SkuDTO> getSkuByCmdId(@PathVariable String cmdId) {
-		LOG.debug("into the method getSkuByCmdId()");
-		LOG.debug("Cmd Id:"+cmdId);
+		LOG.info("into the method getSkuByCmdId()");
+		LOG.info("Cmd Id:"+cmdId);
 		SkuDTO dto = new SkuDTO();
 		dto.setCmdId(cmdId);
 		return skuControllerHelper.getSkuListByCmdId(dto);

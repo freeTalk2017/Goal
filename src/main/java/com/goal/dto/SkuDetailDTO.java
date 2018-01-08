@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 单品详情DTO
+ * 单品详情(属性)DTO
  * @author lizhiwei
  *
  */

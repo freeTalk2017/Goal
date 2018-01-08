@@ -6,18 +6,25 @@ package com.goal.dto;
  *
  */
 public class SkuQueryResultDTO extends AbstractDTO{
+	/** 单品id **/
 	private String skuId;
-	
+
+	/** 单品价格 **/
 	private int price;
-	
+
+	/** 单品详情id **/
 	private String skuDetailId;
 	
+	/** 属性顺序 **/
 	private int index;
-	
+
+	/** 属性key **/
 	private String paramKey;
-	
+
+	/** 属性值 **/
 	private String paramValue;
-	
+
+	/** 父属性id **/
 	private String pId;
 
 	public String getSkuId() {
